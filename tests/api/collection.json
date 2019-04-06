@@ -1,75 +1,68 @@
 {
-  "id": "b200ec3b-775c-449a-aa83-ddab05a68afe",
-  "name": "Ensiie Test Back",
-  "description": "",
-  "auth": null,
-  "events": null,
-  "variables": [],
-  "order": [
-    "b9ae50d8-e0e4-4634-bdea-836f5cbb8f6c"
-  ],
-  "folders_order": [],
-  "folders": [],
-  "requests": [
-    {
-      "id": "b9ae50d8-e0e4-4634-bdea-836f5cbb8f6c",
-      "name": "Create a Jet Pack",
-      "url": "{{url}}\/jetpacks",
-      "description": "",
-      "data": [],
-      "dataMode": "raw",
-      "headerData": [
-        {
-          "key": "Content-Type",
-          "name": "Content-Type",
-          "value": "application\/json",
-          "description": "",
-          "type": "text"
-        }
-      ],
-      "method": "POST",
-      "pathVariableData": [],
-      "queryParams": [],
-      "auth": null,
-      "events": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
-            "exec": [
-              "pm.globals.set('url', 'http:\/\/localhost:3000')"
-            ],
-            "type": "text\/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
-            "exec": [
-              "pm.test(\"Status code is 201\", function () {",
-              "    pm.response.to.have.status(201);",
-              "});",
-              "",
-              "pm.test(\"Your test name\", function () {",
-              "    var jsonData = pm.response.json();",
-              "    pm.expect(jsonData.name).to.eql(\"Jet Pack \u00e0 fusion X98371\");",
-              "    pm.globals.set('jetpack.id', jsonData.id)",
-              "});"
-            ],
-            "type": "text\/javascript"
-          }
-        }
-      ],
-      "folder": null,
-      "preRequestScript": "pm.globals.set('url', 'http:\/\/localhost:3000')",
-      "tests": "pm.test(\"Status code is 201\", function () {\n    pm.response.to.have.status(201);\n});\n\npm.test(\"Your test name\", function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData.name).to.eql(\"Jet Pack \u00e0 fusion X98371\");\n    pm.globals.set('jetpack.id', jsonData.id)\n});",
-      "currentHelper": null,
-      "helperAttributes": null,
-      "collectionId": "b200ec3b-775c-449a-aa83-ddab05a68afe",
-      "rawModeData": "{\n\t\"name\":\"Jet Pack \u00e0 fusion X98371\"\n}",
-      "headers": "Content-Type: application\/json\n",
-      "pathVariables": []
-    }
-  ]
+	"info": {
+		"_postman_id": "b200ec3b-775c-449a-aa83-ddab05a68afe",
+		"name": "Ensiie Test Back",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Jet Pack",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Json bdy has information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"Jet Pack à fusion X98371\");",
+							"    pm.expect(jsonData.image).to.eql(\"Base 64 ...\");",
+							"    pm.globals.set('jetpack.id', jsonData.id)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Jet Pack à fusion X98371\",\n\t\"image\": \"Base 64 ...\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/jetpacks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jetpacks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }

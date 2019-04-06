@@ -2,6 +2,7 @@ module.exports = class {
     constructor() {
         this._id = null;
         this._name = null;
+        this._image = null;
     }
 
 
@@ -21,10 +22,19 @@ module.exports = class {
         this._name = value;
     }
 
+    get image() {
+        return this._image;
+    }
+
+    set image(value) {
+        this._image = value;
+    }
+
     toJson() {
         return {
             id : this.id,
-            name: this.name
+            name: this.name,
+            image: this.image
         }
     }
 };

@@ -8,6 +8,7 @@ console.log(req.body);
     let jetpack = new Jetpack();
     jetpack.id = uuidv4();
     jetpack.name = req.body.name;
+    jetpack.image = req.body.image;
 
     const repository = new JetpackRepository(db);
     repository.create(jetpack);
